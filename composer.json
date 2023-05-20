@@ -23,5 +23,6 @@
   "minimum-stability": "dev",
   "require-dev": {
     "orchestra/testbench": "dev-develop"
-  }
+  },
+  "version": "0.1"
 }
