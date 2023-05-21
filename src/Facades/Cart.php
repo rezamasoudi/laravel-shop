@@ -2,6 +2,7 @@
 
 namespace Masoudi\Laravel\Shop\Facades;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Facade;
 use Masoudi\Laravel\Shop\Cart as CartModule;
@@ -16,6 +17,7 @@ use Masoudi\Laravel\Shop\Contracts\Orderable;
  * @method static Collection all()
  * @method static float total()
  * @method static float subtotal()
+ * @method static Model createOrder(bool $cleanup = true)
  */
 class Cart extends Facade
 {

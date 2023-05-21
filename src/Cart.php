@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Masoudi\Laravel\Shop\Contracts\CartStorage;
 use Masoudi\Laravel\Shop\Contracts\Orderable;
+use Masoudi\Laravel\Shop\Exceptions\EmptyCartException;
+use Masoudi\Laravel\Shop\Exceptions\InvalidClassException;
 
 class Cart
 {
@@ -72,17 +74,6 @@ class Cart
     }
 
     /**
-     * Clear all orderable data from cart
-     *
-     * @return $this
-     */
-    public function clear(): Cart
-    {
-        $this->storage->clear($this->namespace);
-        return $this;
-    }
-
-    /**
      * Get total price of cart
      *
      * @return float
@@ -102,13 +93,25 @@ class Cart
         return $this->storage->subtotal($this->namespace);
     }
 
-    public function createOrder(): Model
+    /**
+     * @param bool $cleanup
+     * @return Model
+     * @throws InvalidClassException|EmptyCartException|Exception
+     */
+    public function createOrder(bool $cleanup = true): Model
     {
-        return \Masoudi\Laravel\Shop\Facades\Order::create(
+        $order = \Masoudi\Laravel\Shop\Facades\Order::create(
             namespace: $this->namespace,
             session: $this->storage->getSessionName(),
             collection: $this->all()
         );
+
+        if ($cleanup) {
+            // cleanup cart
+            $this->clear();
+        }
+
+        return $order;
     }
 
     /**
@@ -119,6 +122,17 @@ class Cart
     public function all(): Collection
     {
         return $this->storage->all($this->namespace);
+    }
+
+    /**
+     * Clear all orderable data from cart
+     *
+     * @return $this
+     */
+    public function clear(): Cart
+    {
+        $this->storage->clear($this->namespace);
+        return $this;
     }
 
 }
