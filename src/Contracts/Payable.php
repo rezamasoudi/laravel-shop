@@ -9,20 +9,20 @@ interface Payable
      *
      * @return float
      */
-    function amount(): float;
+    function getAmount(): float;
 
     /**
      * Discount of payable in range 0-100
      *
      * @return int
      */
-    function discount(): int;
+    function getDiscount(): int;
 
     /**
      * Get payable index id
      *
      * @return int
      */
-    function getUID(): int;
+    function getPayableID(): int;
 
 }

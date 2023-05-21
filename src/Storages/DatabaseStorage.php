@@ -101,7 +101,7 @@ class DatabaseStorage implements CartStorage
     {
         $cart = Cart::query()->firstOrCreate([
             'payable_type' => $payable::class,
-            'payable_id' => $payable->getUID(),
+            'payable_id' => $payable->getPayableID(),
             'session' => $this->getSessionName(),
             'namespace' => $namespace,
         ], [
@@ -133,7 +133,7 @@ class DatabaseStorage implements CartStorage
                  */
                 $payable = $cart->getRelation('payable');
                 $quantity = $cart->getAttribute('quantity');
-                $total += Utils::calculateProductPrice($payable->amount(), $payable->discount(), $quantity);
+                $total += Utils::calculateProductPrice($payable->getAmount(), $payable->getDiscount(), $quantity);
             });
 
         return $total;
@@ -157,7 +157,7 @@ class DatabaseStorage implements CartStorage
                  */
                 $payable = $cart->getRelation('payable');
                 $quantity = $cart->getAttribute('quantity');
-                $subtotal += Utils::calculateProductPrice($payable->amount(), 0, $quantity);
+                $subtotal += Utils::calculateProductPrice($payable->getAmount(), 0, $quantity);
             });
 
         return $subtotal;
