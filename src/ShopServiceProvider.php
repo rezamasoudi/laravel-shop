@@ -3,9 +3,12 @@
 namespace Masoudi\Laravel\Shop;
 
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 use Masoudi\Laravel\Shop\Contracts\CartStorage;
 use Masoudi\Laravel\Shop\Contracts\OrderInterface;
+use Masoudi\Laravel\Shop\Events\OrderPaid;
+use Masoudi\Laravel\Shop\Listeners\ProcessOrder;
 use Masoudi\Laravel\Shop\Storages\DatabaseStorage;
 
 class ShopServiceProvider extends ServiceProvider
@@ -25,6 +28,9 @@ class ShopServiceProvider extends ServiceProvider
             __DIR__ . "/../export/migrations/create_order_tables.php" =>
                 database_path("migrations/{$date}_create_order_tables.php")
         ], "laravel-shop");
+
+        Event::listen(OrderPaid::class, ProcessOrder::class);
+
     }
 
 
