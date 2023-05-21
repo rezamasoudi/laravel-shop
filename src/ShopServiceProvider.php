@@ -7,8 +7,10 @@ use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 use Masoudi\Laravel\Shop\Contracts\CartStorage;
 use Masoudi\Laravel\Shop\Contracts\OrderInterface;
+use Masoudi\Laravel\Shop\Events\OrderCompleted;
 use Masoudi\Laravel\Shop\Events\OrderPaid;
 use Masoudi\Laravel\Shop\Events\OrderShipped;
+use Masoudi\Laravel\Shop\Listeners\CompleteOrder;
 use Masoudi\Laravel\Shop\Listeners\ProcessOrder;
 use Masoudi\Laravel\Shop\Listeners\ShipOrder;
 use Masoudi\Laravel\Shop\Storages\DatabaseStorage;
@@ -33,6 +35,7 @@ class ShopServiceProvider extends ServiceProvider
 
         Event::listen(OrderPaid::class, ProcessOrder::class);
         Event::listen(OrderShipped::class, ShipOrder::class);
+        Event::listen(OrderCompleted::class, CompleteOrder::class);
 
     }
 
