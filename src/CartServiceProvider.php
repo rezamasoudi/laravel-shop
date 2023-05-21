@@ -5,6 +5,7 @@ namespace Masoudi\Laravel\Cart;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 use Masoudi\Laravel\Cart\Contracts\CartStorage;
+use Masoudi\Laravel\Cart\Contracts\OrderInterface;
 use Masoudi\Laravel\Cart\Storages\DatabaseStorage;
 
 class CartServiceProvider extends ServiceProvider
@@ -38,6 +39,10 @@ class CartServiceProvider extends ServiceProvider
 
         $this->app->bind("laravel-cart", function (Application $application) {
             return $application->make(Cart::class);
+        });
+
+        $this->app->bind(OrderInterface::class, function (Application $application) {
+            return $application->make(Order::class);
         });
 
     }
