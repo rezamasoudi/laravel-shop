@@ -1,6 +1,6 @@
 <?php
 
-namespace Masoudi\Laravel\Cart\Contracts;
+namespace Masoudi\Laravel\Shop\Contracts;
 
 use Illuminate\Support\Collection;
 
@@ -9,22 +9,22 @@ interface CartStorage extends Session
     /**
      * add item to cart
      *
-     * @param Payable $payable
+     * @param Orderable $payable
      * @param string $namespace
      * @param int $quantity
      * @return void
      */
-    public function add(Payable $payable, string $namespace, int $quantity = 1): void;
+    public function add(Orderable $payable, string $namespace, int $quantity = 1): void;
 
     /**
      * remove item from cart
      *
-     * @param Payable $payable
+     * @param Orderable $payable
      * @param string $namespace
      * @param int|null $quantity
      * @return void
      */
-    public function remove(Payable $payable, string $namespace, ?int $quantity = null): void;
+    public function remove(Orderable $payable, string $namespace, ?int $quantity = null): void;
 
     /**
      * clear cart

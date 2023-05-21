@@ -17,12 +17,12 @@ implements model with `Payable` interface and add `InteractsWithCart`
 trait in model like below example:
 
 ```php
-use Masoudi\Laravel\Cart\Contracts\Payable;
-use Masoudi\Laravel\Cart\Support\Traits\InteractsWithCart;
+use Masoudi\Laravel\Shop\Contracts\Orderable;
+use Masoudi\Laravel\Shop\Support\Traits\InteractsWithShop;
 
-class Product extends Model implements Payable
+class Product extends Model implements Orderable
 {
-    use InteractsWithCart;
+    use InteractsWithShop;
 
     function amount(): float
     {
@@ -37,8 +37,9 @@ class Product extends Model implements Payable
 }
 ```
 Now you can manage model in cart, See example:
+
 ```php
-use Masoudi\Laravel\Cart\Facades\Cart;
+use Masoudi\Laravel\Shop\Facades\Cart;
 
 class ProductController {
     

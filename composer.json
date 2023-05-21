@@ -1,10 +1,10 @@
 {
-  "name": "masoudi/laravel-cart",
-  "description": "Shopping cart for Laravel",
+  "name": "masoudi/laravel-shop",
+  "description": "Shopping order manager for Laravel",
   "license": "MIT",
   "autoload": {
     "psr-4": {
-      "Masoudi\\Laravel\\Cart\\": "src/"
+      "Masoudi\\Laravel\\Shop\\": "src/"
     }
   },
   "authors": [
@@ -16,7 +16,7 @@
   "extra": {
     "laravel": {
       "providers": [
-        "Masoudi\\Laravel\\Cart\\CartServiceProvider"
+        "Masoudi\\Laravel\\Shop\\ShopServiceProvider"
       ]
     }
   },

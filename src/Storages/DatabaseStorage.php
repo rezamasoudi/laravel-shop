@@ -1,13 +1,13 @@
 <?php
 
-namespace Masoudi\Laravel\Cart\Storages;
+namespace Masoudi\Laravel\Shop\Storages;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
-use Masoudi\Laravel\Cart\Contracts\CartStorage;
-use Masoudi\Laravel\Cart\Contracts\Payable;
-use Masoudi\Laravel\Cart\Models\Cart;
-use Masoudi\Laravel\Cart\Support\Utils;
+use Masoudi\Laravel\Shop\Contracts\CartStorage;
+use Masoudi\Laravel\Shop\Contracts\Orderable;
+use Masoudi\Laravel\Shop\Models\Cart;
+use Masoudi\Laravel\Shop\Support\Utils;
 
 class DatabaseStorage implements CartStorage
 {
@@ -16,12 +16,12 @@ class DatabaseStorage implements CartStorage
     /**
      * remove item from cart
      *
-     * @param Payable $payable
+     * @param Orderable $payable
      * @param string $namespace
      * @param int|null $quantity
      * @return void
      */
-    public function remove(Payable $payable, string $namespace, ?int $quantity = null): void
+    public function remove(Orderable $payable, string $namespace, ?int $quantity = null): void
     {
         Cart::query()
             ->where('session', $this->getSessionName())
@@ -92,16 +92,16 @@ class DatabaseStorage implements CartStorage
     /**
      * add item to cart
      *
-     * @param Payable $payable
+     * @param Orderable $payable
      * @param string $namespace
      * @param int $quantity
      * @return void
      */
-    public function add(Payable $payable, string $namespace, int $quantity = 1): void
+    public function add(Orderable $payable, string $namespace, int $quantity = 1): void
     {
         $cart = Cart::query()->firstOrCreate([
             'payable_type' => $payable::class,
-            'payable_id' => $payable->getPayableID(),
+            'payable_id' => $payable->getOrderableID(),
             'session' => $this->getSessionName(),
             'namespace' => $namespace,
         ], [
@@ -129,7 +129,7 @@ class DatabaseStorage implements CartStorage
             ->where('namespace', $namespace)
             ->each(function (Cart $cart) use (&$total) {
                 /**
-                 * @var Payable $payable
+                 * @var Orderable $payable
                  */
                 $payable = $cart->getRelation('payable');
                 $quantity = $cart->getAttribute('quantity');
@@ -153,7 +153,7 @@ class DatabaseStorage implements CartStorage
             ->where('namespace', $namespace)
             ->each(function (Cart $cart) use (&$subtotal) {
                 /**
-                 * @var Payable $payable
+                 * @var Orderable $payable
                  */
                 $payable = $cart->getRelation('payable');
                 $quantity = $cart->getAttribute('quantity');

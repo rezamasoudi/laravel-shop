@@ -1,12 +1,12 @@
 <?php
 
-namespace Masoudi\Laravel\Cart;
+namespace Masoudi\Laravel\Shop;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
-use Masoudi\Laravel\Cart\Contracts\OrderInterface;
-use Masoudi\Laravel\Cart\Exceptions\OrderNotFoundException;
-use Masoudi\Laravel\Cart\Models\Order as OrderModel;
+use Masoudi\Laravel\Shop\Contracts\OrderInterface;
+use Masoudi\Laravel\Shop\Exceptions\OrderNotFoundException;
+use Masoudi\Laravel\Shop\Models\Order as OrderModel;
 
 class Order implements OrderInterface
 {

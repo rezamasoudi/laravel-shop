@@ -1,8 +1,8 @@
 <?php
 
-namespace Masoudi\Laravel\Cart\Contracts;
+namespace Masoudi\Laravel\Shop\Contracts;
 
-interface Payable
+interface Orderable
 {
     /**
      * Payable amount
@@ -23,6 +23,6 @@ interface Payable
      *
      * @return int
      */
-    function getPayableID(): int;
+    function getOrderableID(): int;
 
 }

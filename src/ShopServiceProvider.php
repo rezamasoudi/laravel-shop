@@ -1,14 +1,14 @@
 <?php
 
-namespace Masoudi\Laravel\Cart;
+namespace Masoudi\Laravel\Shop;
 
 use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
-use Masoudi\Laravel\Cart\Contracts\CartStorage;
-use Masoudi\Laravel\Cart\Contracts\OrderInterface;
-use Masoudi\Laravel\Cart\Storages\DatabaseStorage;
+use Masoudi\Laravel\Shop\Contracts\CartStorage;
+use Masoudi\Laravel\Shop\Contracts\OrderInterface;
+use Masoudi\Laravel\Shop\Storages\DatabaseStorage;
 
-class CartServiceProvider extends ServiceProvider
+class ShopServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap any application services.
@@ -18,9 +18,13 @@ class CartServiceProvider extends ServiceProvider
         $date = date("Y_m_d_His");
 
         $this->publishes([
+            // cart migration
             __DIR__ . "/../export/migrations/create_carts_table.php" =>
-                database_path("migrations/{$date}_create_carts_table.php")
-        ], "laravel-cart");
+                database_path("migrations/{$date}_create_carts_table.php"),
+            // order migration
+            __DIR__ . "/../export/migrations/create_order_tables.php" =>
+                database_path("migrations/{$date}_create_order_tables.php")
+        ], "laravel-shop");
     }
 
 

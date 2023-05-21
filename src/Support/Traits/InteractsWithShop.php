@@ -1,15 +1,15 @@
 <?php
 
-namespace Masoudi\Laravel\Cart\Support\Traits;
+namespace Masoudi\Laravel\Shop\Support\Traits;
 
-trait InteractsWithCart
+trait InteractsWithShop
 {
     /**
      * Get primary key
      *
      * @return int
      */
-    function getUID(): int
+    function getOrderableID(): int
     {
         $this->getAttribute($this->primaryKey);
     }

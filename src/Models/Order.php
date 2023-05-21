@@ -1,6 +1,6 @@
 <?php
 
-namespace Masoudi\Laravel\Cart\Models;
+namespace Masoudi\Laravel\Shop\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;

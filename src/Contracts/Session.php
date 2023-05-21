@@ -1,6 +1,6 @@
 <?php
 
-namespace Masoudi\Laravel\Cart\Contracts;
+namespace Masoudi\Laravel\Shop\Contracts;
 
 interface Session
 {

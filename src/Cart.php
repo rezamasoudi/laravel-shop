@@ -1,10 +1,11 @@
 <?php
 
-namespace Masoudi\Laravel\Cart;
+namespace Masoudi\Laravel\Shop;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
-use Masoudi\Laravel\Cart\Contracts\CartStorage;
-use Masoudi\Laravel\Cart\Contracts\Payable;
+use Masoudi\Laravel\Shop\Contracts\CartStorage;
+use Masoudi\Laravel\Shop\Contracts\Orderable;
 
 class Cart
 {
@@ -47,11 +48,11 @@ class Cart
     /**
      * Add a payable to cart
      *
-     * @param Payable $payable
+     * @param Orderable $payable
      * @param int $quantity
      * @return Cart
      */
-    public function add(Payable $payable, int $quantity = 1): Cart
+    public function add(Orderable $payable, int $quantity = 1): Cart
     {
         $this->storage->add($payable, $this->namespace, $quantity);
         return $this;
@@ -60,11 +61,11 @@ class Cart
     /**
      * Remove payable from cart
      *
-     * @param Payable $payable
+     * @param Orderable $payable
      * @param int|null $quantity
      * @return $this
      */
-    public function remove(Payable $payable, ?int $quantity = null): Cart
+    public function remove(Orderable $payable, ?int $quantity = null): Cart
     {
         $this->storage->remove($payable, $this->namespace, $quantity);
         return $this;
@@ -109,6 +110,11 @@ class Cart
     public function subtotal(): float
     {
         return $this->storage->subtotal($this->namespace);
+    }
+
+    public function createOrder(): Model
+    {
+
     }
 
 }

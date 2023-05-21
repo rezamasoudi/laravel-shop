@@ -1,9 +1,9 @@
 <?php
 
-namespace Masoudi\Laravel\Cart\Facades;
+namespace Masoudi\Laravel\Shop\Facades;
 
 use Illuminate\Support\Facades\Facade;
-use Masoudi\Laravel\Cart\Contracts\OrderInterface;
+use Masoudi\Laravel\Shop\Contracts\OrderInterface;
 
 class Order extends Facade
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Masoudi\Laravel\Cart\Exceptions;
+namespace Masoudi\Laravel\Shop\Exceptions;
 
 class OrderNotFoundException extends \Exception
 {
