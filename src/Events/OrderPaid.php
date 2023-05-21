@@ -2,7 +2,7 @@
 
 namespace Masoudi\Laravel\Shop\Events;
 
-use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Foundation\Events\Dispatchable;
 use Masoudi\Laravel\Shop\Models\Order;
 
 class OrderPaid

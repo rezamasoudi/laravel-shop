@@ -11,6 +11,7 @@ class Order extends Model
         "session",
         "namespace",
         "code",
+        "status",
     ];
 
     public function items(): HasMany
