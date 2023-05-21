@@ -13,7 +13,7 @@ php artisan vendor:publish --tag=laravel-cart
 ```
 
 ### How to use
-implements model with `Payable` interface and add `InteractsWithCart` 
+implements model with `orderable` interface and add `InteractsWithCart` 
 trait in model like below example:
 
 ```php

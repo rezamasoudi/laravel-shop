@@ -9,15 +9,15 @@ class Cart extends Model
 {
 
     protected $fillable = [
-        'payable_type',
-        'payable_id',
+        'orderable_type',
+        'orderable_id',
         'session',
         'namespace',
         'quantity',
     ];
 
-    public function payable(): MorphTo
+    public function orderable(): MorphTo
     {
-        return $this->morphTo('payable', 'payable_type', 'payable_id');
+        return $this->morphTo('orderable', 'orderable_type', 'orderable_id');
     }
 }

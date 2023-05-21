@@ -11,6 +11,16 @@ trait InteractsWithShop
      */
     function getOrderableID(): int
     {
-        $this->getAttribute($this->primaryKey);
+        return $this->getAttribute($this->primaryKey);
+    }
+
+    /**
+     * Get class name
+     *
+     * @return string
+     */
+    function getOrderableType(): string
+    {
+        return $this::class;
     }
 }

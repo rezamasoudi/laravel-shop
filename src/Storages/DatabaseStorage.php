@@ -16,12 +16,12 @@ class DatabaseStorage implements CartStorage
     /**
      * remove item from cart
      *
-     * @param Orderable $payable
+     * @param Orderable $orderable
      * @param string $namespace
      * @param int|null $quantity
      * @return void
      */
-    public function remove(Orderable $payable, string $namespace, ?int $quantity = null): void
+    public function remove(Orderable $orderable, string $namespace, ?int $quantity = null): void
     {
         Cart::query()
             ->where('session', $this->getSessionName())
@@ -77,13 +77,13 @@ class DatabaseStorage implements CartStorage
     {
         $collection = collect();
 
-        Cart::with('payable')
+        Cart::with('orderable')
             ->where('session', $this->getSessionName())
             ->where('namespace', $namespace)
             ->each(function (Cart $cart) use (&$collection) {
-                $payable = $cart->getRelation('payable');
-                $payable->quantity = $cart->getAttribute('quantity');
-                $collection->add($payable);
+                $orderable = $cart->getRelation('orderable');
+                $orderable->quantity = $cart->getAttribute('quantity');
+                $collection->add($orderable);
             });
 
         return $collection;
@@ -92,16 +92,16 @@ class DatabaseStorage implements CartStorage
     /**
      * add item to cart
      *
-     * @param Orderable $payable
+     * @param Orderable $orderable
      * @param string $namespace
      * @param int $quantity
      * @return void
      */
-    public function add(Orderable $payable, string $namespace, int $quantity = 1): void
+    public function add(Orderable $orderable, string $namespace, int $quantity = 1): void
     {
         $cart = Cart::query()->firstOrCreate([
-            'payable_type' => $payable::class,
-            'payable_id' => $payable->getOrderableID(),
+            'orderable_type' => $orderable::class,
+            'orderable_id' => $orderable->getOrderableID(),
             'session' => $this->getSessionName(),
             'namespace' => $namespace,
         ], [
@@ -124,16 +124,16 @@ class DatabaseStorage implements CartStorage
     {
         $total = 0.0;
 
-        Cart::with('payable')
+        Cart::with('orderable')
             ->where('session', $this->getSessionName())
             ->where('namespace', $namespace)
             ->each(function (Cart $cart) use (&$total) {
                 /**
-                 * @var Orderable $payable
+                 * @var Orderable $orderable
                  */
-                $payable = $cart->getRelation('payable');
+                $orderable = $cart->getRelation('orderable');
                 $quantity = $cart->getAttribute('quantity');
-                $total += Utils::calculateProductPrice($payable->getAmount(), $payable->getDiscount(), $quantity);
+                $total += Utils::calculateProductPrice($orderable->getAmount(), $orderable->getDiscount(), $quantity);
             });
 
         return $total;
@@ -148,16 +148,16 @@ class DatabaseStorage implements CartStorage
     {
         $subtotal = 0.0;
 
-        Cart::with('payable')
+        Cart::with('orderable')
             ->where('session', $this->getSessionName())
             ->where('namespace', $namespace)
             ->each(function (Cart $cart) use (&$subtotal) {
                 /**
-                 * @var Orderable $payable
+                 * @var Orderable $orderable
                  */
-                $payable = $cart->getRelation('payable');
+                $orderable = $cart->getRelation('orderable');
                 $quantity = $cart->getAttribute('quantity');
-                $subtotal += Utils::calculateProductPrice($payable->getAmount(), 0, $quantity);
+                $subtotal += Utils::calculateProductPrice($orderable->getAmount(), 0, $quantity);
             });
 
         return $subtotal;

@@ -1,6 +1,6 @@
 {
   "name": "masoudi/laravel-shop",
-  "description": "Shopping order manager for Laravel",
+  "description": "Common shop modules for Laravel",
   "license": "MIT",
   "autoload": {
     "psr-4": {
@@ -20,7 +20,7 @@
       ]
     }
   },
-  "minimum-stability": "dev",
+  "minimum-stability": "stable",
   "require-dev": {
     "orchestra/testbench": "dev-develop"
   },

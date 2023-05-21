@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->string('session')->nullable();
             $table->string('namespace')->nullable();
-            $table->string('code')->nullable();
+            $table->string('code')->unique();
             $table->enum('status', ["pending", "processing", "delivering", "completed", "cancelled"])
                 ->default('pending');
             $table->timestamps();

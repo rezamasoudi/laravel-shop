@@ -46,33 +46,33 @@ class Cart
     }
 
     /**
-     * Add a payable to cart
+     * Add a orderable to cart
      *
-     * @param Orderable $payable
+     * @param Orderable $orderable
      * @param int $quantity
      * @return Cart
      */
-    public function add(Orderable $payable, int $quantity = 1): Cart
+    public function add(Orderable $orderable, int $quantity = 1): Cart
     {
-        $this->storage->add($payable, $this->namespace, $quantity);
+        $this->storage->add($orderable, $this->namespace, $quantity);
         return $this;
     }
 
     /**
-     * Remove payable from cart
+     * Remove orderable from cart
      *
-     * @param Orderable $payable
+     * @param Orderable $orderable
      * @param int|null $quantity
      * @return $this
      */
-    public function remove(Orderable $payable, ?int $quantity = null): Cart
+    public function remove(Orderable $orderable, ?int $quantity = null): Cart
     {
-        $this->storage->remove($payable, $this->namespace, $quantity);
+        $this->storage->remove($orderable, $this->namespace, $quantity);
         return $this;
     }
 
     /**
-     * Clear all payable data from cart
+     * Clear all orderable data from cart
      *
      * @return $this
      */
@@ -80,16 +80,6 @@ class Cart
     {
         $this->storage->clear($this->namespace);
         return $this;
-    }
-
-    /**
-     * Get all cart items
-     *
-     * @return Collection
-     */
-    public function all(): Collection
-    {
-        return $this->storage->all($this->namespace);
     }
 
     /**
@@ -114,7 +104,21 @@ class Cart
 
     public function createOrder(): Model
     {
+        return \Masoudi\Laravel\Shop\Facades\Order::create(
+            namespace: $this->namespace,
+            session: $this->storage->getSessionName(),
+            collection: $this->all()
+        );
+    }
 
+    /**
+     * Get all cart items
+     *
+     * @return Collection
+     */
+    public function all(): Collection
+    {
+        return $this->storage->all($this->namespace);
     }
 
 }

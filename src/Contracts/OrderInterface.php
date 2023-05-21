@@ -2,8 +2,11 @@
 
 namespace Masoudi\Laravel\Shop\Contracts;
 
+use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Masoudi\Laravel\Shop\Exceptions\EmptyCartException;
+use Masoudi\Laravel\Shop\Exceptions\InvalidClassException;
 use Masoudi\Laravel\Shop\Exceptions\OrderNotFoundException;
 
 interface OrderInterface
@@ -47,17 +50,21 @@ interface OrderInterface
      * Get order by id
      *
      * @param int $id
+     * @param bool $loadItems
      * @return Model
+     * @throws OrderNotFoundException
      */
-    public function get(int $id): Model;
+    public function get(int $id, bool $loadItems = false): Model;
 
     /**
      * Get order by order_code
      *
      * @param string $code
+     * @param bool $loadItems
      * @return Model
+     * @throws OrderNotFoundException
      */
-    public function getByCode(string $code): Model;
+    public function getByCode(string $code, bool $loadItems = false): Model;
 
     /**
      * Get all orders
@@ -65,5 +72,16 @@ interface OrderInterface
      * @return Collection
      */
     public function getAll(): Collection;
+
+    /**
+     * Create new order
+     *
+     * @param string $namespace
+     * @param string $session
+     * @param Collection $collection
+     * @return Model
+     * @throws InvalidClassException|EmptyCartException|Exception
+     */
+    public function create(string $namespace, string $session, Collection $collection): Model;
 
 }

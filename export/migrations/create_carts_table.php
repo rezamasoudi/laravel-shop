@@ -14,12 +14,12 @@ return new class extends Migration {
             $table->id();
             $table->string('session')->nullable();
             $table->string('namespace')->nullable();
-            $table->string('payable_type');
-            $table->unsignedInteger('payable_id');
+            $table->string('orderable_type');
+            $table->unsignedInteger('orderable_id');
             $table->integer('quantity')->default(0);
             $table->timestamps();
 
-            $table->index(['session', 'namespace', 'payable_type', 'payable_id']);
+            $table->index(['session', 'namespace', 'orderable_type', 'orderable_id']);
 
         });
     }

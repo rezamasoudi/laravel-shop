@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7b136bb8e06c4987108b229031f3f759",
+    "content-hash": "ec5064fa69b136d56acf6cc741482650",
     "packages": [],
     "packages-dev": [
         {
@@ -2038,12 +2038,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "0ffddce52d816f72d0efc4d9b02e276d3309ef01"
+                "reference": "ba788aa98b9f20ebe2bfdbaec152eca69636943d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/0ffddce52d816f72d0efc4d9b02e276d3309ef01",
-                "reference": "0ffddce52d816f72d0efc4d9b02e276d3309ef01",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/ba788aa98b9f20ebe2bfdbaec152eca69636943d",
+                "reference": "ba788aa98b9f20ebe2bfdbaec152eca69636943d",
                 "shasum": ""
             },
             "require": {
@@ -2087,7 +2087,7 @@
                 "issues": "https://github.com/nikic/PHP-Parser/issues",
                 "source": "https://github.com/nikic/PHP-Parser/tree/4.x"
             },
-            "time": "2023-03-06T22:12:36+00:00"
+            "time": "2023-05-19T20:26:12+00:00"
         },
         {
             "name": "nunomaduro/termwind",
@@ -2842,12 +2842,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "1313279ada1c2d2e663394625f8117970ad6c16a"
+                "reference": "62424bf906e0a1ddf00d5fe538a69e80cd684a4c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/1313279ada1c2d2e663394625f8117970ad6c16a",
-                "reference": "1313279ada1c2d2e663394625f8117970ad6c16a",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/62424bf906e0a1ddf00d5fe538a69e80cd684a4c",
+                "reference": "62424bf906e0a1ddf00d5fe538a69e80cd684a4c",
                 "shasum": ""
             },
             "require": {
@@ -2936,7 +2936,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-05-19T08:05:35+00:00"
+            "time": "2023-05-20T07:40:47+00:00"
         },
         {
             "name": "pimple/pimple",

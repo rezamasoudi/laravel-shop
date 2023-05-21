@@ -5,24 +5,31 @@ namespace Masoudi\Laravel\Shop\Contracts;
 interface Orderable
 {
     /**
-     * Payable amount
+     * orderable amount
      *
      * @return float
      */
     function getAmount(): float;
 
     /**
-     * Discount of payable in range 0-100
+     * Discount of orderable in range 0-100
      *
      * @return int
      */
     function getDiscount(): int;
 
     /**
-     * Get payable index id
+     * Get orderable index id
      *
      * @return int
      */
     function getOrderableID(): int;
+
+    /**
+     * Get orderable type
+     *
+     * @return string
+     */
+    function getOrderableType(): string;
 
 }

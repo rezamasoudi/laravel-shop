@@ -9,22 +9,22 @@ interface CartStorage extends Session
     /**
      * add item to cart
      *
-     * @param Orderable $payable
+     * @param Orderable $orderable
      * @param string $namespace
      * @param int $quantity
      * @return void
      */
-    public function add(Orderable $payable, string $namespace, int $quantity = 1): void;
+    public function add(Orderable $orderable, string $namespace, int $quantity = 1): void;
 
     /**
      * remove item from cart
      *
-     * @param Orderable $payable
+     * @param Orderable $orderable
      * @param string $namespace
      * @param int|null $quantity
      * @return void
      */
-    public function remove(Orderable $payable, string $namespace, ?int $quantity = null): void;
+    public function remove(Orderable $orderable, string $namespace, ?int $quantity = null): void;
 
     /**
      * clear cart
