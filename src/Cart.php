@@ -2,6 +2,7 @@
 
 namespace Masoudi\Laravel\Shop;
 
+use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Masoudi\Laravel\Shop\Contracts\CartStorage;
