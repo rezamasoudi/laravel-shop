@@ -76,12 +76,14 @@ interface OrderInterface
     /**
      * Create new order
      *
-     * @param string $namespace
-     * @param string $session
      * @param Collection $collection
+     * @param string|null $namespace
+     * @param string|null $session
      * @return Model
-     * @throws InvalidClassException|EmptyCartException|Exception
+     * @throws InvalidClassException
+     * @throws EmptyCartException
+     * @throws Exception
      */
-    public function create(string $namespace, string $session, Collection $collection): Model;
+    public function create(Collection $collection, ?string $namespace = null, ?string $session = null): Model;
 
 }

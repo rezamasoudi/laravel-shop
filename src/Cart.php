@@ -102,9 +102,9 @@ class Cart
     public function createOrder(bool $cleanup = true): Model
     {
         $order = \Masoudi\Laravel\Shop\Facades\Order::create(
+            collection: $this->all(),
             namespace: $this->namespace,
-            session: $this->storage->getSessionName(),
-            collection: $this->all()
+            session: $this->storage->getSessionName()
         );
 
         if ($cleanup) {

@@ -150,13 +150,14 @@ class Order implements OrderInterface
     /**
      * Create new order
      *
-     * @param string $namespace
-     * @param string $session
      * @param Collection $collection
+     * @param string|null $namespace
+     * @param string|null $session
      * @return Model
-     * @throws InvalidClassException|EmptyCartException|Exception
+     * @throws EmptyCartException
+     * @throws InvalidClassException
      */
-    public function create(string $namespace, string $session, Collection $collection): Model
+    public function create(Collection $collection, ?string $namespace = null, ?string $session = null): Model
     {
 
         if (!$collection->count()) {
@@ -170,8 +171,8 @@ class Order implements OrderInterface
              * @var OrderModel $order
              */
             $order = OrderModel::query()->create([
-                'session' => $this->session,
-                'namespace' => $this->namespace,
+                'session' => $session ?? $this->session,
+                'namespace' => $namespace ?? $this->namespace,
                 'code' => substr(uniqid(), 0, 8),
             ]);
 

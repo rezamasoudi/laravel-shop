@@ -15,7 +15,7 @@ use Masoudi\Laravel\Shop\Contracts\OrderInterface;
  * @method static Model getByCode(string $code)
  * @method static Collection getAll()
  * @method static Model get(int $id)
- * @method static Model create(string $namespace, string $session, Collection $collection)
+ * @method static Model create(Collection $collection, ?string $namespace = null, ?string $session = null)
  */
 class Order extends Facade
 {
